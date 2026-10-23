@@ -12,6 +12,7 @@
   },
   "type": "module",
   "dependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
     "bcryptjs": "^3.0.3",
     "lucide-react": "^1.61.0",
     "mongoose": "^9.11.3",
