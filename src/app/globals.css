@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-cedar: #1e4b41;
+  --color-cedar-dark: #12332c;
+  --color-leaf: #2f7d6e;
+  --color-mist: #e6efea;
+  --color-paper: #f8f8f4;
+  --color-ink: #13211d;
+  --color-muted: #55645f;
+  --color-line: #d8dfda;
+  --color-amber-deep: #8a5a12;
+  --color-danger: #a63232;
+  --font-display: var(--font-newsreader), Georgia, serif;
+  --font-sans: var(--font-instrument), system-ui, sans-serif;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; line-height: 1.15; }
+  :focus-visible { outline: 3px solid var(--color-leaf); outline-offset: 2px; border-radius: 4px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+}
+
+@layer components {
+  .page-width { margin-inline: auto; width: 100%; max-width: 72rem; padding-inline: 1.25rem; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; border-radius: 0.5rem; padding: 0.75rem 1.25rem; font-weight: 600; font-size: 0.95rem; transition: background-color 0.15s, color 0.15s, border-color 0.15s; cursor: pointer; }
+  .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+  .btn-primary { background: var(--color-cedar); color: #fff; }
+  .btn-primary:hover:not(:disabled) { background: var(--color-cedar-dark); }
+  .btn-secondary { border: 1.5px solid var(--color-cedar); color: var(--color-cedar); background: transparent; }
+  .btn-secondary:hover:not(:disabled) { background: var(--color-mist); }
+  .btn-danger { background: var(--color-danger); color: #fff; }
+  .field-label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 0.35rem; }
+  .field-input { width: 100%; border: 1.5px solid var(--color-line); background: #fff; border-radius: 0.5rem; padding: 0.7rem 0.85rem; font-size: 1rem; }
+  .field-input:hover { border-color: var(--color-leaf); }
+  .field-error { color: var(--color-danger); font-size: 0.85rem; margin-top: 0.3rem; }
+  .prose-page p { margin-top: 0.9rem; line-height: 1.7; color: var(--color-muted); max-width: 65ch; }
+  .prose-page h2 { font-size: 1.5rem; margin-top: 2rem; }
+}
