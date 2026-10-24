@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import DoctorCard from "./DoctorCard";
+import { Stagger, StaggerItem } from "@/components/ui/Reveal";
 
 // Client component only because of the specialty filter.
 export default function DoctorList({ doctors }) {
@@ -23,9 +24,10 @@ export default function DoctorList({ doctors }) {
           </button>
         ))}
       </div>
-      <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3" aria-live="polite">
-        {shown.map((d) => <DoctorCard key={d.id} doctor={d} />)}
-      </div>
+      {/* key={active} replays the staggered entrance whenever the filter changes */}
+      <Stagger key={active} className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {shown.map((d) => <StaggerItem key={d.id}><DoctorCard doctor={d} /></StaggerItem>)}
+      </Stagger>
     </>
   );
 }

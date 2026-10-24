@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { doctors, getDoctor } from "@/data/doctors";
 import { getService } from "@/data/services";
 import { doctorTimetable } from "@/lib/format";
-import Avatar from "@/components/ui/Avatar";
+import Image from "next/image";
 import BookLink from "@/components/ui/BookLink";
 
 export function generateStaticParams() {
@@ -24,7 +24,9 @@ export default async function DoctorPage({ params }) {
       <Link href="/doctors" className="text-sm font-semibold text-cedar underline underline-offset-4">All doctors</Link>
 
       <div className="mt-6 flex flex-col gap-6 sm:flex-row sm:items-center">
-        <Avatar name={doctor.name} tone={doctor.tone} size={128} />
+        <div className="aspect-[4/5] w-44 shrink-0 overflow-hidden rounded-2xl border border-line bg-mist sm:w-56">
+          <Image src={doctor.image} alt={doctor.imageAlt} width={400} height={500} priority sizes="14rem" className="h-full w-full object-cover" />
+        </div>
         <div>
           <h1 className="text-5xl text-cedar-dark">{doctor.name}</h1>
           <p className="mt-1 text-lg font-medium text-leaf">{doctor.specialty}</p>

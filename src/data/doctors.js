@@ -7,6 +7,8 @@
 export const doctors = [
   {
     id: "aditi-sharma",
+    image: "/images/doctors/aditi-sharma.svg", // portrait used everywhere this doctor appears
+    imageAlt: "Illustrated portrait of Dr. Aditi Sharma, General Physician",
     name: "Dr. Aditi Sharma",
     specialty: "General Physician",
     summary: "Everyday health concerns, preventive checkups and long-term follow-up.",
@@ -24,10 +26,11 @@ export const doctors = [
       6: [["09:00", "13:00"]],
     },
     leaveDates: [],
-    tone: "#2f7d6e",
   },
   {
     id: "rohan-verma",
+    image: "/images/doctors/rohan-verma.svg", // portrait used everywhere this doctor appears
+    imageAlt: "Illustrated portrait of Dr. Rohan Verma, Pediatrician",
     name: "Dr. Rohan Verma",
     specialty: "Pediatrician",
     summary: "Child health, growth checks and guidance for worried parents.",
@@ -44,10 +47,11 @@ export const doctors = [
       6: [["10:00", "14:00"]],
     },
     leaveDates: [],
-    tone: "#3a6ea5",
   },
   {
     id: "neha-singh",
+    image: "/images/doctors/neha-singh.svg", // portrait used everywhere this doctor appears
+    imageAlt: "Illustrated portrait of Dr. Neha Singh, Dermatologist",
     name: "Dr. Neha Singh",
     specialty: "Dermatologist",
     summary: "Skin, hair and nail concerns, assessed with care and clear next steps.",
@@ -63,7 +67,6 @@ export const doctors = [
       6: [["11:00", "14:00"]],
     },
     leaveDates: [],
-    tone: "#8a5a8f",
   },
 ];
 

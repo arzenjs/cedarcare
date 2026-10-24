@@ -2,7 +2,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { RefreshCw } from "lucide-react";
-import { shortDate, timeLabel } from "@/lib/format";
+import { timeLabel } from "@/lib/format";
+import DatePicker from "./DatePicker";
 
 const empty = { time: "", date: "" };
 
@@ -108,9 +109,9 @@ export default function BookingForm({ doctors, services, initialDoctor = "", ini
   const invalid = (name) => ({ "aria-invalid": errors[name] ? true : undefined, "aria-describedby": errors[name] ? `${name}-error` : undefined });
 
   return (
-    <form onSubmit={onSubmit} noValidate className="space-y-10">
+    <form onSubmit={onSubmit} noValidate className="min-w-0 space-y-10">
       {/* Step 1 */}
-      <fieldset className="space-y-5">
+      <fieldset className="min-w-0 space-y-5">
         <legend className="font-display text-2xl text-cedar-dark">1. Doctor and service</legend>
         <Field id="doctorId" label="Doctor" error={errors.doctorId}>
           <select id="doctorId" className="field-input" value={form.doctorId} onChange={(e) => chooseDoctor(e.target.value)} {...invalid("doctorId")}>
@@ -127,7 +128,7 @@ export default function BookingForm({ doctors, services, initialDoctor = "", ini
       </fieldset>
 
       {/* Step 2 */}
-      <fieldset className="space-y-5">
+      <fieldset className="min-w-0 space-y-5">
         <legend className="font-display text-2xl text-cedar-dark">2. Date and time</legend>
 
         {!doctor && <p className="text-muted">Choose a doctor to see available dates.</p>}
@@ -135,24 +136,9 @@ export default function BookingForm({ doctors, services, initialDoctor = "", ini
         {datesData?.error && datesData.doctorId === form.doctorId && <p className="field-error" role="alert">Could not load dates. Please refresh the page.</p>}
 
         {doctor && !loadingDates && datesData?.dates?.length > 0 && (
-          <div>
-            <p className="field-label" id="date-label">Date</p>
-            <div role="group" aria-labelledby="date-label" className="flex gap-2 overflow-x-auto pb-2">
-              {datesData.dates.map((d) => (
-                <button
-                  key={d.date}
-                  type="button"
-                  disabled={!d.open}
-                  aria-pressed={form.date === d.date}
-                  onClick={() => chooseDate(d.date)}
-                  className={`shrink-0 rounded-lg border px-3 py-2 text-sm font-medium ${form.date === d.date ? "border-cedar bg-cedar text-white" : d.open ? "border-line bg-white hover:border-leaf" : "cursor-not-allowed border-line bg-paper text-muted/60 line-through"}`}
-                >
-                  {shortDate(d.date)}
-                </button>
-              ))}
-            </div>
+          <div className="min-w-0">
+            <DatePicker dates={datesData.dates} value={form.date} onChange={chooseDate} />
             {errors.date && <p className="field-error" role="alert">{errors.date}</p>}
-            <p className="mt-1 text-xs text-muted">Crossed-out dates are unavailable (closed, holiday or doctor not in).</p>
           </div>
         )}
 
@@ -162,17 +148,17 @@ export default function BookingForm({ doctors, services, initialDoctor = "", ini
             {loadingSlots && <p className="text-muted" role="status">Checking available times…</p>}
             {!loadingSlots && slotsData?.error && <p className="field-error" role="alert">Could not load times. Please try again.</p>}
             {!loadingSlots && !slotsData?.error && slotsData?.times.length === 0 && (
-              <p className="rounded-lg border border-line bg-white p-4 text-muted" role="status">No times are free on this date. Please choose another date.</p>
+              <p className="rounded-lg border border-line bg-white p-4 text-muted" role="status">No times are free on this date. Please choose another date from the calendar above.</p>
             )}
             {!loadingSlots && slotsData?.times.length > 0 && (
-              <div role="group" aria-labelledby="time-label" className="grid grid-cols-3 gap-2 sm:grid-cols-5">
+              <div role="group" aria-labelledby="time-label" className="grid grid-cols-[repeat(auto-fill,minmax(5.5rem,1fr))] gap-2">
                 {slotsData.times.map((t) => (
                   <button
                     key={t}
                     type="button"
                     aria-pressed={form.time === t}
                     onClick={() => set("time", t)}
-                    className={`rounded-lg border px-2 py-2.5 text-sm font-medium ${form.time === t ? "border-cedar bg-cedar text-white" : "border-line bg-white hover:border-leaf"}`}
+                    className={`min-w-0 truncate rounded-lg border px-2 py-2.5 text-sm font-medium transition-colors ${form.time === t ? "border-cedar bg-cedar text-white" : "border-line bg-white hover:border-leaf"}`}
                   >
                     {timeLabel(t)}
                   </button>
@@ -188,7 +174,7 @@ export default function BookingForm({ doctors, services, initialDoctor = "", ini
       </fieldset>
 
       {/* Step 3 */}
-      <fieldset className="space-y-5">
+      <fieldset className="min-w-0 space-y-5">
         <legend className="font-display text-2xl text-cedar-dark">3. Your details</legend>
         <Field id="patientName" label="Full name" error={errors.patientName}>
           <input id="patientName" className="field-input" autoComplete="name" value={form.patientName} onChange={(e) => set("patientName", e.target.value)} {...invalid("patientName")} />

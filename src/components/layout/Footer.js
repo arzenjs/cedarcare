@@ -2,14 +2,15 @@ import Link from "next/link";
 import { Phone, Mail, MapPin, MessageCircle, Clock } from "lucide-react";
 import { clinic, telHref, mailHref, whatsappHref, mapsSearchHref } from "@/config/clinic";
 import { navLinks } from "@/config/navigation";
+import Logo from "@/components/ui/Logo";
 
 export default function Footer() {
   return (
     <footer className="mt-24 bg-cedar-dark text-white">
       <div className="page-width grid gap-10 py-14 md:grid-cols-4">
         <div className="md:col-span-1">
-          <p className="font-display text-2xl">CedarCare</p>
-          <p className="mt-2 text-sm text-white/80">{clinic.tagline}</p>
+          <Link href="/" aria-label="CedarCare Family Clinic home"><Logo light /></Link>
+          <p className="mt-4 text-sm text-white/80">{clinic.tagline}</p>
           <p className="mt-4 text-xs text-white/65">Demo website. All clinic details and doctors are fictional.</p>
         </div>
 

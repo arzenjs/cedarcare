@@ -14,8 +14,8 @@ export default async function AppointmentsPage({ searchParams }) {
   const serviceOptions = services.map(({ id, title }) => ({ id, title }));
 
   return (
-    <div className="page-width grid gap-12 py-16 lg:grid-cols-[1fr_320px]">
-      <div className="max-w-2xl">
+    <div className="page-width grid gap-12 py-16 lg:grid-cols-[minmax(0,1fr)_320px]">
+      <div className="min-w-0 max-w-2xl">
         <h1 className="text-5xl text-cedar-dark">Book an appointment</h1>
         <p className="mt-4 mb-10 text-lg text-muted">No account needed. Your appointment is confirmed only after it is saved.</p>
         <BookingForm doctors={doctorOptions} services={serviceOptions} initialDoctor={doctorId} initialService={serviceId} />

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 64" role="img" aria-label="CedarCare Family Clinic">
+<g><rect width="64" height="64" rx="15" fill="#1e4b41"/>
+<path d="M32 16V48M16 32H48" stroke="#fff" stroke-width="8" stroke-linecap="round"/>
+<path d="M37 27C37 15 48 10 55 9C55 16 50 27 37 27Z" fill="#6fcfb6"/></g>
+<text x="76" y="35" font-family="Georgia, 'Times New Roman', serif" font-size="27" fill="#ffffff">Cedar<tspan fill="#bfe6da">Care</tspan></text>
+<text x="77" y="54" font-family="Arial, Helvetica, sans-serif" font-size="11.5" letter-spacing="2.4" fill="#ffffff" opacity=".75">FAMILY CLINIC</text>
+</svg>

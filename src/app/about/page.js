@@ -1,7 +1,10 @@
 import Link from "next/link";
 import SectionHeading from "@/components/ui/SectionHeading";
 import BookLink from "@/components/ui/BookLink";
+import Image from "next/image";
 import Avatar from "@/components/ui/Avatar";
+import Reveal from "@/components/ui/Reveal";
+import { images } from "@/config/images";
 import { doctors } from "@/data/doctors";
 
 export const metadata = { title: "About" };
@@ -31,11 +34,16 @@ export default function AboutPage() {
       </section>
 
       <section className="bg-mist/60 py-16">
-        <div className="page-width grid gap-10 lg:grid-cols-2">
-          <SectionHeading title="Our mission" />
-          <p className="text-lg leading-relaxed text-muted">
-            To give families in Patna dependable everyday healthcare in a calm setting, with doctors who take the time to understand each patient and a booking process that is as simple as it should be.
-          </p>
+        <div className="page-width grid items-center gap-10 lg:grid-cols-2">
+          <Reveal>
+            <SectionHeading title="Our mission" />
+            <p className="mt-4 text-lg leading-relaxed text-muted">
+              To give families in Patna dependable everyday healthcare in a calm setting, with doctors who take the time to understand each patient and a booking process that is as simple as it should be.
+            </p>
+          </Reveal>
+          <Reveal>
+            <Image src={images.clinic.src} alt={images.clinic.alt} width={images.clinic.width} height={images.clinic.height} sizes="(min-width: 1024px) 34rem, 100vw" className="aspect-[4/3] w-full rounded-2xl border border-line object-cover" />
+          </Reveal>
         </div>
       </section>
 
@@ -64,7 +72,7 @@ export default function AboutPage() {
           <ul className="mt-8 grid gap-6 md:grid-cols-3">
             {doctors.map((d) => (
               <li key={d.id} className="flex items-center gap-4 rounded-lg border border-line bg-white p-5">
-                <Avatar name={d.name} tone={d.tone} size={56} />
+                <Avatar doctor={d} size={56} />
                 <div>
                   <Link href={`/doctors/${d.id}`} className="font-semibold text-cedar underline underline-offset-4">{d.name}</Link>
                   <p className="text-sm text-muted">{d.specialty}</p>
